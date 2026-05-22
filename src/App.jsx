@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-const APP_VERSION = "v3.0-mobile-stable";
+const APP_VERSION = "v3.1-sheet-fixed";
 
 const SHEET_URL =
   "https://opensheet.elk.sh/1xrWaEm2IqESM4IeAxRs4lJYNQmDKFw205RyUDZhyBIc/TVs";
@@ -62,7 +62,7 @@ export default function App() {
         setLoading(true);
         setLoadError("");
 
-        const response = await fetch(`${SHEET_URL}?t=${Date.now()}`, {
+        const response = await fetch(SHEET_URL, {
           cache: "no-store",
         });
 
@@ -81,9 +81,8 @@ export default function App() {
         console.error("Erro ao carregar TVs:", error);
         setLoadError(error?.message || "Erro desconhecido ao carregar TVs.");
 
-        if (typeof window !== "undefined") {
-          alert("Erro ao carregar TVs: " + (error?.message || "erro desconhecido"));
-        }
+        // Não mostramos alert para o usuário final.
+        // O erro fica visível na página e no console.
       } finally {
         setLoading(false);
       }
