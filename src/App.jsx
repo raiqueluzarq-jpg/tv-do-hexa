@@ -359,24 +359,21 @@ export default function App() {
                 </div>
 
                 <div className="options-grid">
-  {currentQuestion.options.map((option) => (
-    <button
-      key={option.value}
-      onClick={() => handleAnswer(option)}
-      className="option-card"
-    >
-      <span className="option-icon">{option.icon}</span>
-
-      <span>
-        <span className="option-label">{option.label}</span>
-
-        <span className="option-description">
-          {option.description}
-        </span>
-      </span>
-    </button>
-  ))}
-</div>
+                  {currentQuestion.options.map((option) => (
+                    <button key={option.value} onClick={() => handleAnswer(option)} disabled={loading} className="option-card">
+                      <span className="option-icon">{option.icon}</span>
+                      <span><span className="option-label">{option.label}</span><span className="option-description">{option.description}</span></span>
+                    </button>
+                  ))}
+                </div>
+              </motion.section>
+            ) : (
+              <motion.section key="result" initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.28 }}>
+                <div className="glass-card result-hero">
+                  <div className="result-icon">{getProfileIcon()}</div>
+                  <h2 className="profile-title">{getProfile()}</h2>
+                  <p className="result-copy">Com base nas suas respostas, essas são as TVs mais indicadas para você.</p>
+                </div>
 
                 <div style={{ height: 20 }} />
                 {rankedTVs[0]?.fallbackMode && <><div className="warning">⚠️ Não encontramos TVs no tamanho ideal para esse orçamento. Mostramos as melhores opções disponíveis dentro da sua faixa de preço.</div><div style={{ height: 20 }} /></>}
