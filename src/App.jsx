@@ -360,7 +360,7 @@ export default function App() {
 
                 <div className="options-grid">
                   {currentQuestion.options.map((option) => (
-                    <button key={option.value} onClick={() => handleAnswer(option)} disabled={loading} className="option-card">
+                    <button key={option.value} onClick={() => handleAnswer(option)} className="option-card">
                       <span className="option-icon">{option.icon}</span>
                       <span><span className="option-label">{option.label}</span><span className="option-description">{option.description}</span></span>
                     </button>
