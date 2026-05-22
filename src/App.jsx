@@ -21,7 +21,7 @@ export default function App() {
   useEffect(() => {
     async function loadTVs() {
       try {
-        const response = await fetch(SHEET_URL);
+        const response = await fetch(`${SHEET_URL}?t=${Date.now()}`);
         const data = await response.json();
         setTvs(data);
       } catch (err) {
