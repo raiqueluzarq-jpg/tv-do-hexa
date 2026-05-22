@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-const APP_VERSION = "v3.1-sheet-fixed";
+const APP_VERSION = "v3.2-loading-result";
 
 const SHEET_URL =
   "https://opensheet.elk.sh/1xrWaEm2IqESM4IeAxRs4lJYNQmDKFw205RyUDZhyBIc/TVs";
@@ -911,7 +911,14 @@ export default function App() {
                   </>
                 )}
 
-                {rankedTVs.length === 0 ? (
+                {loading ? (
+                  <div className="glass-card empty-card">
+                    <h3 className="section-title">Buscando as melhores TVs...</h3>
+                    <p className="subtitle">
+                      Estamos carregando o catálogo e cruzando suas respostas com as opções disponíveis.
+                    </p>
+                  </div>
+                ) : rankedTVs.length === 0 ? (
                   <div className="glass-card empty-card">
                     <h3 className="section-title">Nenhuma TV encontrada</h3>
                     <p className="subtitle">
